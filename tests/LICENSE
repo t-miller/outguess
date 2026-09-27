@@ -5,3 +5,10 @@ Reference:     https://search.creativecommons.org/photos/e199c2fb-01be-4c76-a832
 Copyright:     None (Public Domain)
 License:       CC0 1.0 (Creative Commons Public Domain Dedication)
 License text:  https://creativecommons.org/publicdomain/zero/1.0/
+
+Name:          noise.jpg
+Source:        Generated with Pillow: 160x160 gradient plus Gaussian noise,
+               numpy.random.default_rng(544), JPEG quality 85
+Copyright:     None (Public Domain)
+License:       CC0 1.0 (Creative Commons Public Domain Dedication)
+License text:  https://creativecommons.org/publicdomain/zero/1.0/

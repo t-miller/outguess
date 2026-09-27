@@ -163,9 +163,9 @@ steg_adjust_errors(bitmap *bitmap, int flags)
 				break;
 		if (n < j - 1) {
 			memmove(detect + n + 1, detect + n,
-				(j - n) * sizeof(int));
+				(j - n - 1) * sizeof(int));
 			memmove(priority + n + 1, priority + n,
-				(j - n) * sizeof(int));
+				(j - n - 1) * sizeof(int));
 		}
 		if (n < j) {
 			priority[n] = steg_err_buf[i];
@@ -241,7 +241,8 @@ steg_embedchunk(bitmap *bitmap, iterator *iter,
 		i = iterator_next(iter, bitmap);
 	}
 
-	return 1;
+	/* Running off the end of the bitmap must not count as success */
+	return bits == 0;
 }
 
 stegres
@@ -312,6 +313,12 @@ steg_embed(bitmap *bitmap, iterator *iter, struct arc4_stream *as,
 			result.error = STEG_ERR_BODY;
 			return result;
 		}
+	}
+
+	/* The iterator ran off the bitmap before all data was embedded */
+	if (datalen > 0) {
+		result.error = STEG_ERR_BODY;
+		return result;
 	}
 
 	/* Final error adjustion after end */

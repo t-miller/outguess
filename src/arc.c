@@ -82,8 +82,8 @@ arc4_getword(as)
 	struct arc4_stream *as;
 {
 	u_int32_t val;
-	val = arc4_getbyte(as) << 24;
-	val |= arc4_getbyte(as) << 16;
+	val = (u_int32_t)arc4_getbyte(as) << 24;
+	val |= (u_int32_t)arc4_getbyte(as) << 16;
 	val |= arc4_getbyte(as) << 8;
 	val |= arc4_getbyte(as);
 	return val;
