@@ -8,7 +8,9 @@
 # This file is under the same license of the outguess.
 
 ./jpeg-6b-steg/libjpeg.a:
-	$(MAKE) -C ./jpeg-6b-steg -f makefile.ansi 'CC=$(CC)' CFLAGS+=-DHAVE_STDC_HEADERS libjpeg.a
+	$(MAKE) -C ./jpeg-6b-steg -f makefile.ansi 'CC=$(CC)' 'CFLAGS+=-DHAVE_STDC_HEADERS $(OUTGUESS_CFLAGS)' libjpeg.a
+
+AM_CFLAGS = $(OUTGUESS_CFLAGS)
 
 bin_PROGRAMS = outguess histogram
 

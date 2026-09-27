@@ -4,7 +4,7 @@ dnl
 dnl This file is under the same license of the outguess.
 
 AC_PREREQ([2.69])
-AC_INIT([outguess],[0.4.1],[https://github.com/t-miller/outguess/issues])
+AC_INIT([outguess],[0.4.2],[https://github.com/t-miller/outguess/issues])
 AC_CONFIG_SRCDIR([src/golay.h])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE
@@ -16,6 +16,24 @@ AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
+
+# This codebase predates C23, which modern compilers use by default, and relies
+# on declarations that newer compilers reject. Build it as GNU C99 and keep
+# those diagnostics as warnings. Flags the compiler does not know are skipped;
+# CFLAGS given to configure or make come later and can override these.
+OUTGUESS_CFLAGS=
+AC_LANG_PUSH([C])
+for flag in -std=gnu99 -Wno-implicit-function-declaration -Wno-int-conversion -Wno-deprecated-non-prototype; do
+   AC_MSG_CHECKING([whether $CC accepts $flag])
+   save_CFLAGS=$CFLAGS
+   CFLAGS="$CFLAGS $flag -Werror"
+   AC_COMPILE_IFELSE([AC_LANG_PROGRAM([], [])],
+                     [AC_MSG_RESULT([yes]); OUTGUESS_CFLAGS="$OUTGUESS_CFLAGS $flag"],
+                     [AC_MSG_RESULT([no])])
+   CFLAGS=$save_CFLAGS
+done
+AC_LANG_POP([C])
+AC_SUBST([OUTGUESS_CFLAGS])
 
 # Check for jconfig.h in jpeg dir
 jpegdir="src/jpeg-6b-steg"
