@@ -4,7 +4,8 @@
 
 This is a maintained fork of the archived
 [resurrecting-open-source-projects/outguess](https://github.com/resurrecting-open-source-projects/outguess).
-Version 0.4.1 fixes two embedding bugs in 0.4; see the ChangeLog.
+It fixes two embedding bugs in 0.4 and builds with modern C compilers; see
+the ChangeLog.
 
 ## What is OutGuess?
 

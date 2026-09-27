@@ -1,3 +1,13 @@
+OutGuess 0.4.2
+--------------
+2026-09-27 - t-miller <tyler@taberna.tech>
+
+ - configure now builds as GNU C99 and keeps implicit-declaration,
+   int-conversion and non-prototype diagnostics as warnings, so the code
+   builds without extra CFLAGS where C23 would otherwise be used (GCC 15's
+   default, and the -std=gnu23 that autoconf 2.72 adds). The bundled libjpeg
+   gets the same flags.
+
 OutGuess 0.4.1
 --------------
 2026-09-27 - t-miller <tyler@taberna.tech>
