@@ -2,6 +2,10 @@
 
 #### outguess - universal steganographic tool
 
+This is a maintained fork of the archived
+[resurrecting-open-source-projects/outguess](https://github.com/resurrecting-open-source-projects/outguess).
+Version 0.4.1 fixes two embedding bugs in 0.4; see the ChangeLog.
+
 ## What is OutGuess?
 
 Outguess is a universal steganographic tool that allows the insertion of hidden

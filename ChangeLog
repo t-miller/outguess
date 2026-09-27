@@ -1,3 +1,15 @@
+OutGuess 0.4.1
+--------------
+2026-09-27 - t-miller <tyler@taberna.tech>
+
+ - Fixed a stack buffer overflow in steg_adjust_errors that aborted embedding
+   with -e (error correction) on fortified and sanitized builds.
+ - Fixed embedding that could stop one bit (or more) short of the message when
+   the iterator ran off the end of the bitmap; the seed search now rejects such
+   seeds instead of producing an image that retrieves corrupted data.
+ - Fixed a signed-shift undefined behaviour in arc4_getword.
+ - Added regression tests for both embedding fixes.
+
 OutGuess 0.4
 ------------
 2021-09-02 - Joao Eriberto Mota Filho <eriberto@eriberto.pro.br>
